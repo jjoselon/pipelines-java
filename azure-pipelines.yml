@@ -22,6 +22,14 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+  enabled: false
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifactType: 'pipeline'
+    artifactName: 'nombre de mi artefacto opcional'
+  enabled: false
 
 - task: Bash@3
   inputs:
@@ -29,11 +37,4 @@ steps:
     script: |
       # Write your commands here
       
-      echo 'Creando carpeta'
-      
-      mkdir folder_test
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifactType: 'pipeline'
-    artifactName: 'nombre de mi artefacto opcional'
+      echo 'Pipeline ran!'
